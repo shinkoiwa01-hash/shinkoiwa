@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>毎日更新チェックシート</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 12px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 14px 14px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    h1 {
+      font-size: 18px;
+      margin: 0 0 6px;
+    }
+    .date {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .label {
+      font-size: 13px;
+      color: #444;
+    }
+    select {
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      background: #fafafa;
+      min-width: 150px;
+    }
+
+    /* アコーディオン */
+    .accordion {
+      margin-top: 10px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #eee;
+      margin-bottom: 8px;
+    }
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: #f8f9ff;
+      cursor: pointer;
+    }
+    .accordion-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .accordion-arrow {
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+    .accordion.open .accordion-arrow {
+      transform: rotate(90deg);
+    }
+    .accordion-body {
+      padding: 8px 12px 10px;
+      background: #fff;
+    }
+
+    .section {
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed #eee;
+    }
+    .section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    h3 {
+      font-size: 13px;
+      margin: 6px 0 4px;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+      font-size: 13px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+    .item input {
+      margin-right: 10px;
+      transform: scale(1.25); /* 押しやすく大きめ */
+    }
+
+    .small {
+      font-size: 11px;
+      color: #666;
+    }
+    .actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    button {
+      border: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .btn-reset {
+      background: #fff;
+      border: 1px solid #ccc;
+    }
+    .btn-reset:hover {
+      background: #f0f0f0;
+    }
+
+    /* 媒体リンク */
+    .media-links-wrapper {
+      margin-top: 18px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+    .media-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .media-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .media-links a {
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      padding: 8px 6px;
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+      word-break: break-all;
+    }
+    .media-links a:active {
+      transform: scale(0.97);
+    }
+
+    .footer {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #999;
+      text-align: right;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        border-radius: 12px;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 17px;
+      }
+      select {
+        width: 100%;
+      }
+      .media-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>毎日更新チェックシート</h1>
+    <div class="date" id="today"></div>
+
+    <div class="row">
+      <span class="label">担当者：</span>
+      <select id="personSelect">
+        <option value="none">（未選択）</option>
+        <option value="kakuta">角田</option>
+        <option value="takahashi">高橋</option>
+        <option value="tsuchiya">土屋</option>
+        <option value="oyasato">親里</option>
+        <option value="kugu">久具</option>
+        <option value="nishino">西野</option>
+        <option value="nozawa">野澤</option>
+      </select>
+    </div>
+
+    <!-- ランキング変更（ポータル） -->
+    <div class="accordion open">
+      <div class="accordion-header">
+        <span class="accordion-title">ランキング変更（ポータル）</span>
+        <span class="accordion-arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <div class="section">
+          <h3>シティヘブン錦糸町</h3>
+          <label class="item">
+            <input type="checkbox" data-id="heaven_kinshicho_rank" />
+            ランキング変更
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>シティヘブン新小岩</h3>
+          <label class="item">
+            <input type="checkbox" data-id="heaven_shinkoiwa_rank" />
+            ランキング変更
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>デリヘルじゃぱん小岩【lovesele01】</h3>
+          <label class="item">
+            <input type="checkbox" data-id="delij_koiwa_lovesele01_rank" />
+            ランキング変更
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>デリヘルじゃぱん新小岩【lovesele】</h3>
+          <label class="item">
+            <input type="checkbox" data-id="delij_shinkoiwa_lovesele_rank" />
+            ランキング変更
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>デリヘルじゃぱん葛西【loves2525】</h3>
+          <label class="item">
+            <input type="checkbox" data-id="delij_kasai_loves2525_rank" />
+            ランキング変更
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>風俗じゃぱん</h3>
+          <label class="item">
+            <input type="checkbox" data-id="fuzoku_japan_rank" />
+            ピックアップ変更
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>駅ちか</h3>
+          <label class="item">
+            <input type="checkbox" data-id="ekichika_rank" />
+            ランキング変更
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>口コミ情報局</h3>
+          <label class="item">
+            <input type="checkbox" data-id="kuchikomi_info_rank" />
+            ピックアップ変更
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- HP作業 -->
+    <div class="accordion open">
+      <div class="accordion-header">
+        <span class="accordion-title">HP作業</span>
+        <span class="accordion-arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <div class="section">
+          <h3>ピックアップ</h3>
+          <label class="item">
+            <input type="checkbox" data-id="hp_pickup_change" />
+            ピックアップ変更
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>ピックアップムービー</h3>
+          <label class="item">
+            <input type="checkbox" data-id="hp_pickup_movie_change" />
+            ピックアップムービー変更
+          </label>
+        </div>
+
+        <div class="section">
+          <h3>口コミ</h3>
+          <label class="item">
+            <input type="checkbox" data-id="hp_review_sort" />
+            口コミ並び替え変更
+          </label>
+          <label class="item">
+            <input type="checkbox" data-id="vanilla_women_review" />
+            バニラ女性目線口コミ（1日1回）
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-reset" id="resetToday">今日のチェックをリセット</button>
+    </div>
+
+    <!-- 媒体リンク -->
+    <div class="media-links-wrapper">
+      <div class="media-title">各媒体リンク</div>
+      <div class="media-links">
+        <a href="https://www.cityheaven.net/tokyo/A1313/A131301/love-sele-k/?op=newc&pcmode=sp" target="_blank">シティヘブン錦糸町</a>
+        <a href="https://www.cityheaven.net/tokyo/A1313/A131304/love-sele-s/?op=newc&pcmode=sp" target="_blank">シティヘブン新小岩</a>
+        <a href="https://deli-fuzoku.jp/lovesele01/" target="_blank">デリヘルじゃぱん小岩【lovesele01】</a>
+        <a href="https://deli-fuzoku.jp/loves2525/" target="_blank">デリヘルじゃぱん新小岩【lovesele】</a>
+        <a href="https://deli-fuzoku.jp/lovesele/" target="_blank">デリヘルじゃぱん葛西【loves2525】</a>
+        <a href="https://fuzoku.jp/loveselection/" target="_blank">風俗じゃぱん</a>
+        <a href="https://ranking-deli.jp/8/shop/794/" target="_blank">駅ちか</a>
+        <a href="https://fujoho.jp/index.php?p=shop&id=1302" target="_blank">口コミ情報局</a>
+        <a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele&reviews_id=BZigcA" target="_blank">バニラ錦</a>
+        <a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele2&reviews_id=oQNtyw" target="_blank">バニラ西</a>
+        <a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele3&reviews_id=WgQ47S" target="_blank">バニラ新</a>
+        <a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele4&reviews_id=C52eK3" target="_blank">バニラ葛</a>
+        <a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele5&reviews_id=acn0JS" target="_blank">バニラ船</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      ※本日のチェック状態は端末ごとに保存されます
+    </div>
+  </div>
+
+  <script>
+    // 今日の日付表示
+    const todayEl = document.getElementById("today");
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = now.getMonth() + 1;
+    const d = now.getDate();
+    const dateKey = now.toISOString().slice(0, 10); // 例: 2025-12-04
+    todayEl.textContent = `本日：${y}年${m}月${d}日`;
+
+    const personSelect = document.getElementById("personSelect");
+    const LAST_PERSON_KEY = "dailyChecklist-lastPerson";
+    const STORAGE_KEY = "dailyChecklist-" + dateKey; // ★ 担当者は含めない
+
+    const checkboxes = Array.from(
+      document.querySelectorAll('input[type="checkbox"][data-id]')
+    );
+
+    // 状態読み込み（その日1つの状態を全員で共有）
+    function loadState() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      checkboxes.forEach(cb => (cb.checked = false));
+      if (!saved) return;
+      try {
+        const state = JSON.parse(saved);
+        checkboxes.forEach(cb => {
+          const id = cb.getAttribute("data-id");
+          cb.checked = !!state[id];
+        });
+      } catch (e) {
+        console.error("状態の読み込みに失敗しました", e);
+      }
+    }
+
+    // 状態保存（担当者に関係なく、その日の共通状態として保存）
+    function saveState() {
+      const state = {};
+      checkboxes.forEach(cb => {
+        const id = cb.getAttribute("data-id");
+        state[id] = cb.checked;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    // チェック変更時に保存
+    checkboxes.forEach(cb => {
+      cb.addEventListener("change", () => {
+        saveState();
+      });
+    });
+
+    // 担当者選択は見た目用（チェック状態には影響しない）
+    personSelect.addEventListener("change", () => {
+      localStorage.setItem(LAST_PERSON_KEY, personSelect.value);
+    });
+
+    // 初期処理
+    (function init() {
+      const last = localStorage.getItem(LAST_PERSON_KEY);
+      if (last) {
+        personSelect.value = last;
+      }
+      loadState();
+    })();
+
+    // 今日のチェックを全リセット（全員共通分）
+    document.getElementById("resetToday").addEventListener("click", () => {
+      if (!confirm("本日のチェックをすべてリセットしますか？")) return;
+      checkboxes.forEach(cb => (cb.checked = false));
+      saveState();
+    });
+
+    // アコーディオン開閉
+    const accordions = document.querySelectorAll(".accordion");
+    accordions.forEach(ac => {
+      const header = ac.querySelector(".accordion-header");
+      const body = ac.querySelector(".accordion-body");
+      // 初期表示
+      if (ac.classList.contains("open")) {
+        body.style.display = "block";
+      } else {
+        body.style.display = "none";
+      }
+      header.addEventListener("click", () => {
+        const isOpen = ac.classList.contains("open");
+        ac.classList.toggle("open", !isOpen);
+        body.style.display = isOpen ? "none" : "block";
+      });
+    });
+  </script>
+</body>
+</html>
