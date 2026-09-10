@@ -1,112 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>LOVE SELECTION 更新作業表</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2563eb">
+<title>LOVE SELECTION 毎日更新チェックシート</title>
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--text:#222;--muted:#667085;--line:#e6e8ee;--accent:#1f6feb;--ok:#16a34a;--warn:#f59e0b;--danger:#dc2626}
-*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--text)}
-.wrap{max-width:760px;margin:0 auto;padding:14px 12px 40px}
-header{position:sticky;top:0;z-index:5;background:rgba(246,247,251,.96);backdrop-filter:blur(8px);padding:8px 0 10px;border-bottom:1px solid var(--line)}
-h1{font-size:21px;margin:0 0 6px}.sub{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px}
-.badge{background:#eef4ff;color:#174ea6;border-radius:999px;padding:4px 9px;font-weight:700}.progress{margin-top:9px;height:10px;background:#e8ebf0;border-radius:999px;overflow:hidden}.bar{height:100%;width:0;background:var(--ok);transition:.2s}
-.section{margin-top:14px}.section h2{font-size:15px;margin:0 0 8px;color:#344054}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03)}
-.item{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;padding:12px;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:none}
-.item.done{background:#f3fbf5}.check{width:26px;height:26px;accent-color:var(--ok)}
-.title{font-size:15px;font-weight:700;line-height:1.35}.meta{margin-top:7px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-select,input[type=text]{width:100%;padding:10px 11px;border:1px solid #d0d5dd;border-radius:10px;background:#fff;font-size:16px;min-height:42px}
-a.site{display:inline-block;margin-top:6px;color:var(--accent);text-decoration:none;font-weight:700;font-size:13px}a.site:active{opacity:.6}
-.note{padding:12px;border-top:1px dashed var(--line);font-size:12px;color:var(--muted);background:#fafbfc}.actions{display:flex;gap:8px;margin-top:12px}.btn{flex:1;border:0;border-radius:10px;padding:11px 10px;font-weight:700;font-size:14px}.btn.reset{background:#fff0f0;color:var(--danger);border:1px solid #ffd2d2}.btn.today{background:#eef4ff;color:#174ea6;border:1px solid #cfe0ff}
-.small{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.55}
-@media(max-width:520px){.meta{grid-template-columns:1fr}.item{grid-template-columns:38px 1fr;padding:11px 10px}.wrap{padding-left:8px;padding-right:8px}h1{font-size:19px}}
+:root{--bg:#f4f6f8;--card:#fff;--text:#222;--muted:#6b7280;--line:#e5e7eb;--accent:#2563eb;--done:#16a34a;--soft:#eff6ff}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;color:var(--text);background:var(--bg)}main{width:min(920px,calc(100% - 20px));margin:20px auto 40px}h1{margin:0 0 6px;font-size:clamp(24px,6vw,38px);line-height:1.2}.today{color:var(--muted);font-size:14px;margin-bottom:18px}.panel,details{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(0,0,0,.04)}.panel{padding:18px}.assignee{display:flex;gap:10px;align-items:center;flex-wrap:wrap}select,button,input[type="text"]{font:inherit}select,input[type="text"]{width:100%;max-width:420px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:10px;background:#fff}summary{cursor:pointer;font-weight:700;padding:16px 18px;user-select:none;font-size:17px}.tasks{padding:0 14px 16px;display:grid;gap:10px}.task{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#fafafa}.task input[type="checkbox"]{width:22px;height:22px;accent-color:var(--done);flex:0 0 auto}.task:has(input:checked){background:#f0fdf4;border-color:#bbf7d0}.task:has(input:checked) .task-text{color:var(--muted);text-decoration:line-through}.task-link{margin-left:auto;text-decoration:none;color:var(--accent);font-weight:700;white-space:nowrap;padding:6px 9px;border-radius:8px;background:var(--soft)}.photo-row{display:grid;gap:10px;padding:0 14px 16px}.photo-row label{font-weight:700;font-size:14px}.progress-wrap{display:grid;gap:8px}.progress-text{display:flex;justify-content:space-between;gap:10px;font-weight:700}.bar{width:100%;height:12px;border-radius:999px;background:#e5e7eb;overflow:hidden}.bar>div{height:100%;width:0;background:var(--done);transition:width .2s ease}.vanilla-links{display:grid;gap:8px;padding:0 14px 16px}.vanilla-links a{display:block;text-decoration:none;color:var(--accent);border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:#fff;font-weight:700}.reset{width:100%;border:0;border-radius:12px;padding:14px 18px;background:#111827;color:#fff;font-weight:700;cursor:pointer}.note{margin:12px 0 0;color:var(--muted);font-size:13px;line-height:1.6}@media(max-width:560px){main{width:min(100% - 14px,920px);margin-top:14px}.panel{padding:14px}summary{padding:15px 14px}.task{padding:12px}.task-link{font-size:13px}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <h1>LOVE SELECTION 更新作業表</h1>
-  <div class="sub"><span id="dateText" class="badge"></span><span id="countText">0 / 16 完了</span></div>
-  <div class="progress"><div id="bar" class="bar"></div></div>
-</header>
-
-<div id="app"></div>
-
-<div class="actions">
-  <button class="btn today" id="clearToday">今日分をリセット</button>
-  <button class="btn reset" id="clearAll">全データ削除</button>
-</div>
-<div class="small">入力内容はこの端末のブラウザ内に保存されます。GitHub Pagesだけで公開した場合、別のスマホとは自動共有されません。</div>
-</div>
+<main>
+<h1>毎日更新チェックシート</h1>
+<div class="today" id="today"></div>
+<section class="panel assignee"><label for="assignee"><strong>担当者：</strong></label><select id="assignee"><option value="">（未選択）</option><option>角田</option><option>上野原</option><option>奥野</option><option>坪</option><option>西野</option><option>久具</option><option>松丸</option><option>亀谷</option><option>井上</option></select></section>
+<section class="panel progress-wrap"><div class="progress-text"><span>本日の進捗</span><span id="progressText">0 / 0</span></div><div class="bar"><div id="progressBar"></div></div></section>
+<details open><summary>基本作業</summary><div class="tasks"><label class="task"><input type="checkbox" data-key="attendance-contact"><span class="task-text">出勤連絡</span></label><label class="task"><input type="checkbox" data-key="benly-sort"><span class="task-text">ベンリー並び替え</span></label></div></details>
+<details open><summary>各媒体</summary><div class="tasks">
+<label class="task"><input type="checkbox" data-key="cityheaven-kinshicho"><span class="task-text">シティヘブン錦糸町</span><a class="task-link" href="https://www.cityheaven.net/tokyo/A1313/A131301/love-sele-k/?op=newc&pcmode=sp" target="_blank" rel="noopener">開く</a></label>
+<label class="task"><input type="checkbox" data-key="cityheaven-shinkoiwa"><span class="task-text">シティヘブン新小岩</span><a class="task-link" href="https://www.cityheaven.net/tokyo/A1313/A131304/love-sele-s/?op=newc&pcmode=sp" target="_blank" rel="noopener">開く</a></label>
+<label class="task"><input type="checkbox" data-key="deli-koiwa"><span class="task-text">デリヘルジャパン小岩</span><a class="task-link" href="https://deli-fuzoku.jp/lovesele01/" target="_blank" rel="noopener">開く</a></label>
+<label class="task"><input type="checkbox" data-key="deli-shinkoiwa"><span class="task-text">デリヘルジャパン新小岩</span><a class="task-link" href="https://deli-fuzoku.jp/loves2525/" target="_blank" rel="noopener">開く</a></label>
+<label class="task"><input type="checkbox" data-key="deli-kasai"><span class="task-text">デリヘルジャパン葛西</span><a class="task-link" href="https://deli-fuzoku.jp/lovesele/" target="_blank" rel="noopener">開く</a></label>
+<label class="task"><input type="checkbox" data-key="fuzoku-japan"><span class="task-text">風俗じゃぱん</span><a class="task-link" href="https://fuzoku.jp/loveselection/" target="_blank" rel="noopener">開く</a></label>
+<label class="task"><input type="checkbox" data-key="ekichika"><span class="task-text">駅チカ</span><a class="task-link" href="https://ranking-deli.jp/tokyo/area37/style2/794/" target="_blank" rel="noopener">開く</a></label>
+<label class="task"><input type="checkbox" data-key="fujoho"><span class="task-text">口コミ情報局</span><a class="task-link" href="https://fujoho.jp/index.php?p=shop&id=1302" target="_blank" rel="noopener">開く</a></label>
+<label class="task"><input type="checkbox" data-key="ranking-pickup"><span class="task-text">ランキング・ピックアップ変更</span></label>
+</div></details>
+<details open><summary>HP作業</summary><div class="tasks">
+<label class="task"><input type="checkbox" data-key="hp-pickup"><span class="task-text">HP ピックアップ</span><a class="task-link" href="https://love-sele.com/top" target="_blank" rel="noopener">HP</a></label>
+<label class="task"><input type="checkbox" data-key="hp-pickup-movie"><span class="task-text">ピックアップムービー</span><a class="task-link" href="https://love-sele.com/top" target="_blank" rel="noopener">HP</a></label>
+<label class="task"><input type="checkbox" data-key="hp-ranking-sort"><span class="task-text">ランキング並び替え</span><a class="task-link" href="https://love-sele.com/top" target="_blank" rel="noopener">HP</a></label>
+<label class="task"><input type="checkbox" data-key="hp-news"><span class="task-text">HP ニュース更新</span><a class="task-link" href="https://love-sele.com/top" target="_blank" rel="noopener">HP</a></label>
+</div></details>
+<details open><summary>バニラ女性口コミ</summary><div class="tasks"><label class="task"><input type="checkbox" data-key="vanilla-review"><span class="task-text">バニラ女性口コミ（1日1回）</span></label></div><div class="vanilla-links">
+<a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele&reviews_id=BZigcA" target="_blank" rel="noopener">口コミフォーム ①</a>
+<a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele2&reviews_id=oQNtyw" target="_blank" rel="noopener">口コミフォーム ②</a>
+<a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele3&reviews_id=WgQ47S" target="_blank" rel="noopener">口コミフォーム ③</a>
+<a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele4&reviews_id=C52eK3" target="_blank" rel="noopener">口コミフォーム ④</a>
+<a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele5&reviews_id=acn0JS" target="_blank" rel="noopener">口コミフォーム ⑤</a>
+<a href="https://qzin.jp/form_reviews/?reviews_tenpoid=lovesele33&reviews_id=vpi9Ts" target="_blank" rel="noopener">口コミフォーム ⑥</a>
+</div></details>
+<details open><summary>写メ日記代行</summary><div class="tasks"><label class="task"><input type="checkbox" data-key="photo-diary"><span class="task-text">写メ日記代行</span></label></div><div class="photo-row"><label for="photoNames">書いた女性名</label><input id="photoNames" type="text" placeholder="例：○○、△△、□□"></div></details>
+<section class="panel"><button class="reset" id="resetButton" type="button">今日のチェックをリセット</button><p class="note">※チェック状態・担当者・写メ日記の女性名は、この端末のブラウザ内に日付ごとに保存されます。</p></section>
+</main>
 <script>
-const staff = ['角田','上野原','奥野','坪','西野','久具','松丸','亀谷','井上'];
-const items = [
-  {section:'基本作業', name:'出勤連絡'},
-  {section:'基本作業', name:'ベンリー並び替え'},
-  {section:'各媒体', name:'シティヘブン錦糸町', url:'https://www.cityheaven.net/tokyo/A1313/A131301/love-sele-k/?op=newc&pcmode=sp'},
-  {section:'各媒体', name:'シティヘブン新小岩', url:'https://www.cityheaven.net/tokyo/A1313/A131304/love-sele-s/?op=newc&pcmode=sp'},
-  {section:'各媒体', name:'デリヘルジャパン小岩', url:'https://deli-fuzoku.jp/lovesele01/'},
-  {section:'各媒体', name:'デリヘルジャパン新小岩', url:'https://deli-fuzoku.jp/loves2525/'},
-  {section:'各媒体', name:'デリヘルジャパン葛西', url:'https://deli-fuzoku.jp/lovesele/'},
-  {section:'各媒体', name:'風俗じゃぱん', url:'https://fuzoku.jp/loveselection/'},
-  {section:'各媒体', name:'駅チカ', url:'https://ranking-deli.jp/tokyo/area37/style2/794/'},
-  {section:'各媒体', name:'口コミ情報局', url:'https://fujoho.jp/index.php?p=shop&id=1302'},
-  {section:'各媒体', name:'ランキング・ピックアップ変更'},
-  {section:'HP', name:'ピックアップ', url:'https://love-sele.com/top'},
-  {section:'HP', name:'ピックアップムービー', url:'https://love-sele.com/top'},
-  {section:'HP', name:'ランキング並び替え', url:'https://love-sele.com/top'},
-  {section:'HP', name:'ニュース更新', url:'https://love-sele.com/top'},
-  {section:'その他', name:'写メ日記代行', diary:true}
-];
-
-function jpDate(){
-  const d = new Date();
-  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
-  return `${y}-${m}-${day}`;
-}
-const today = jpDate();
-const storageKey = `love-sele-update-${today}`;
-let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
-
-function esc(s){return String(s??'').replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#039;'}[m]));}
-function save(){localStorage.setItem(storageKey, JSON.stringify(state)); updateProgress();}
-function updateProgress(){
-  const done = items.filter((_,i)=>state[i]?.done).length;
-  document.getElementById('countText').textContent = `${done} / ${items.length} 完了`;
-  document.getElementById('bar').style.width = `${Math.round(done/items.length*100)}%`;
-}
-function itemHtml(item,i){
-  const s=state[i]||{};
-  const opts=['<option value="">担当者を選択</option>',...staff.map(n=>`<option ${s.staff===n?'selected':''}>${n}</option>`)].join('');
-  return `<div class="item ${s.done?'done':''}" data-i="${i}">
-    <div><input class="check" type="checkbox" ${s.done?'checked':''} aria-label="完了"></div>
-    <div>
-      <div class="title">${esc(item.name)}</div>
-      ${item.url?`<a class="site" href="${item.url}" target="_blank" rel="noopener">サイトを開く ↗</a>`:''}
-      <div class="meta">
-        <select class="staff">${opts}</select>
-        ${item.diary?`<input class="diary" type="text" placeholder="書いた女性名を入力（複数可）" value="${esc(s.diary||'')}">`:`<input class="memo" type="text" placeholder="メモ（任意）" value="${esc(s.memo||'')}">`}
-      </div>
-    </div>
-  </div>`;
-}
-function render(){
-  document.getElementById('dateText').textContent = new Date().toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
-  const groups = [...new Set(items.map(x=>x.section))];
-  document.getElementById('app').innerHTML = groups.map(g=>`<section class="section"><h2>${g}</h2><div class="card">${items.map((x,i)=>x.section===g?itemHtml(x,i):'').join('')}</div></section>`).join('');
-  document.querySelectorAll('.item').forEach(el=>{
-    const i=+el.dataset.i;
-    el.querySelector('.check').addEventListener('change',e=>{state[i]={...(state[i]||{}),done:e.target.checked}; el.classList.toggle('done',e.target.checked); save();});
-    el.querySelector('.staff').addEventListener('change',e=>{state[i]={...(state[i]||{}),staff:e.target.value}; save();});
-    const memo=el.querySelector('.memo'); if(memo) memo.addEventListener('input',e=>{state[i]={...(state[i]||{}),memo:e.target.value}; save();});
-    const diary=el.querySelector('.diary'); if(diary) diary.addEventListener('input',e=>{state[i]={...(state[i]||{}),diary:e.target.value}; save();});
-  });
-  updateProgress();
-}
-
-document.getElementById('clearToday').addEventListener('click',()=>{if(confirm('今日のチェック・担当者・入力内容をリセットしますか？')){localStorage.removeItem(storageKey);state={};render();}});
-document.getElementById('clearAll').addEventListener('click',()=>{if(confirm('このサイトに保存した全データを削除しますか？')){Object.keys(localStorage).filter(k=>k.startsWith('love-sele-update-')).forEach(k=>localStorage.removeItem(k));state={};render();}});
-render();
+function getLocalDateKey(){const d=new Date();const y=d.getFullYear();const m=String(d.getMonth()+1).padStart(2,'0');const day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`}
+function getDisplayDate(){const d=new Date();const w=['日','月','火','水','木','金','土'];return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${w[d.getDay()]}）`}
+const dateKey=getLocalDateKey();const storageKey=`daily-checksheet-${dateKey}`;const assigneeKey=`daily-checksheet-assignee-${dateKey}`;const photoNamesKey=`daily-checksheet-photo-names-${dateKey}`;const checkboxes=[...document.querySelectorAll('input[type="checkbox"][data-key]')];const assignee=document.getElementById('assignee');const photoNames=document.getElementById('photoNames');const progressText=document.getElementById('progressText');const progressBar=document.getElementById('progressBar');document.getElementById('today').textContent=`本日：${getDisplayDate()}`;
+function loadState(){const saved=JSON.parse(localStorage.getItem(storageKey)||'{}');checkboxes.forEach(box=>box.checked=Boolean(saved[box.dataset.key]));assignee.value=localStorage.getItem(assigneeKey)||'';photoNames.value=localStorage.getItem(photoNamesKey)||'';updateProgress()}
+function saveState(){const state={};checkboxes.forEach(box=>state[box.dataset.key]=box.checked);localStorage.setItem(storageKey,JSON.stringify(state));updateProgress()}
+function updateProgress(){const done=checkboxes.filter(box=>box.checked).length;const total=checkboxes.length;progressText.textContent=`${done} / ${total}`;progressBar.style.width=total?`${Math.round(done/total*100)}%`:'0%'}
+checkboxes.forEach(box=>box.addEventListener('change',saveState));assignee.addEventListener('change',()=>localStorage.setItem(assigneeKey,assignee.value));photoNames.addEventListener('input',()=>localStorage.setItem(photoNamesKey,photoNames.value));document.getElementById('resetButton').addEventListener('click',()=>{if(!confirm('本日のチェック状態をリセットしますか？'))return;checkboxes.forEach(box=>box.checked=false);assignee.value='';photoNames.value='';localStorage.removeItem(storageKey);localStorage.removeItem(assigneeKey);localStorage.removeItem(photoNamesKey);updateProgress()});loadState();
 </script>
 </body>
 </html>
