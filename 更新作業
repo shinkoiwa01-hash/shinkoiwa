@@ -1,233 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>毎日更新チェックシート</title>
-  <style>
-    :root {
-      --bg: #f4f6f8;
-      --card: #ffffff;
-      --text: #222;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --accent: #2563eb;
-      --done: #16a34a;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN",
-        "Yu Gothic", Meiryo, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-    }
-    main {
-      width: min(920px, calc(100% - 24px));
-      margin: 32px auto;
-    }
-    h1 {
-      margin: 0 0 22px;
-      font-size: clamp(24px, 5vw, 38px);
-    }
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.04);
-    }
-    .assignee {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    select, button {
-      font: inherit;
-    }
-    select {
-      min-width: 180px;
-      padding: 10px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      background: #fff;
-    }
-    details {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      margin-bottom: 14px;
-      overflow: hidden;
-    }
-    summary {
-      cursor: pointer;
-      font-weight: 700;
-      padding: 16px 18px;
-      user-select: none;
-    }
-    .tasks {
-      padding: 0 18px 16px;
-      display: grid;
-      gap: 10px;
-    }
-    .task {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 14px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #fafafa;
-    }
-    .task input {
-      width: 20px;
-      height: 20px;
-      accent-color: var(--done);
-      flex: 0 0 auto;
-    }
-    .task:has(input:checked) {
-      background: #f0fdf4;
-      border-color: #bbf7d0;
-    }
-    .task:has(input:checked) span {
-      color: var(--muted);
-      text-decoration: line-through;
-    }
-    .reset {
-      width: 100%;
-      border: 0;
-      border-radius: 12px;
-      padding: 14px 18px;
-      background: #111827;
-      color: #fff;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .reset:hover { opacity: .9; }
-    .links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 10px;
-    }
-    .links a {
-      display: block;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      color: var(--accent);
-      text-decoration: none;
-      background: #fff;
-    }
-    .links a:hover { background: #eff6ff; }
-    .note {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>LOVE SELECTION 更新作業表</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#222;--muted:#667085;--line:#e6e8ee;--accent:#1f6feb;--ok:#16a34a;--warn:#f59e0b;--danger:#dc2626}
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--text)}
+.wrap{max-width:760px;margin:0 auto;padding:14px 12px 40px}
+header{position:sticky;top:0;z-index:5;background:rgba(246,247,251,.96);backdrop-filter:blur(8px);padding:8px 0 10px;border-bottom:1px solid var(--line)}
+h1{font-size:21px;margin:0 0 6px}.sub{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px}
+.badge{background:#eef4ff;color:#174ea6;border-radius:999px;padding:4px 9px;font-weight:700}.progress{margin-top:9px;height:10px;background:#e8ebf0;border-radius:999px;overflow:hidden}.bar{height:100%;width:0;background:var(--ok);transition:.2s}
+.section{margin-top:14px}.section h2{font-size:15px;margin:0 0 8px;color:#344054}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.item{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;padding:12px;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:none}
+.item.done{background:#f3fbf5}.check{width:26px;height:26px;accent-color:var(--ok)}
+.title{font-size:15px;font-weight:700;line-height:1.35}.meta{margin-top:7px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+select,input[type=text]{width:100%;padding:10px 11px;border:1px solid #d0d5dd;border-radius:10px;background:#fff;font-size:16px;min-height:42px}
+a.site{display:inline-block;margin-top:6px;color:var(--accent);text-decoration:none;font-weight:700;font-size:13px}a.site:active{opacity:.6}
+.note{padding:12px;border-top:1px dashed var(--line);font-size:12px;color:var(--muted);background:#fafbfc}.actions{display:flex;gap:8px;margin-top:12px}.btn{flex:1;border:0;border-radius:10px;padding:11px 10px;font-weight:700;font-size:14px}.btn.reset{background:#fff0f0;color:var(--danger);border:1px solid #ffd2d2}.btn.today{background:#eef4ff;color:#174ea6;border:1px solid #cfe0ff}
+.small{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.55}
+@media(max-width:520px){.meta{grid-template-columns:1fr}.item{grid-template-columns:38px 1fr;padding:11px 10px}.wrap{padding-left:8px;padding-right:8px}h1{font-size:19px}}
+</style>
 </head>
 <body>
-  <main>
-    <h1>毎日更新チェックシート</h1>
+<div class="wrap">
+<header>
+  <h1>LOVE SELECTION 更新作業表</h1>
+  <div class="sub"><span id="dateText" class="badge"></span><span id="countText">0 / 16 完了</span></div>
+  <div class="progress"><div id="bar" class="bar"></div></div>
+</header>
 
-    <section class="panel assignee">
-      <label for="assignee"><strong>担当者：</strong></label>
-      <select id="assignee">
-        <option value="">（未選択）</option>
-        <option>角田</option>
-        <option>坪</option>
-        <option>羽田</option>
-        <option>松丸</option>
-        <option>久具</option>
-        <option>西野</option>
-        <option>金井</option>
-      </select>
-    </section>
+<div id="app"></div>
 
-    <details open>
-      <summary>ランキング変更（ポータル）</summary>
-      <div class="tasks">
-        <label class="task"><input type="checkbox" data-key="cityheaven-kinshicho"><span>シティヘブン錦糸町 — ランキング変更</span></label>
-        <label class="task"><input type="checkbox" data-key="cityheaven-shinkoiwa"><span>シティヘブン新小岩 — ランキング変更</span></label>
-        <label class="task"><input type="checkbox" data-key="deli-koiwa"><span>デリヘルじゃぱん小岩【lovesele01】— ランキング変更</span></label>
-        <label class="task"><input type="checkbox" data-key="deli-shinkoiwa"><span>デリヘルじゃぱん新小岩【lovesele】— ランキング変更</span></label>
-        <label class="task"><input type="checkbox" data-key="deli-kasai"><span>デリヘルじゃぱん葛西【loves2525】— ランキング変更</span></label>
-        <label class="task"><input type="checkbox" data-key="fuzoku-japan"><span>風俗じゃぱん — ピックアップ変更</span></label>
-        <label class="task"><input type="checkbox" data-key="ekichika"><span>駅ちか — ランキング変更</span></label>
-        <label class="task"><input type="checkbox" data-key="fujoho"><span>口コミ情報局 — ピックアップ変更</span></label>
+<div class="actions">
+  <button class="btn today" id="clearToday">今日分をリセット</button>
+  <button class="btn reset" id="clearAll">全データ削除</button>
+</div>
+<div class="small">入力内容はこの端末のブラウザ内に保存されます。GitHub Pagesだけで公開した場合、別のスマホとは自動共有されません。</div>
+</div>
+<script>
+const staff = ['角田','上野原','奥野','坪','西野','久具','松丸','亀谷','井上'];
+const items = [
+  {section:'基本作業', name:'出勤連絡'},
+  {section:'基本作業', name:'ベンリー並び替え'},
+  {section:'各媒体', name:'シティヘブン錦糸町', url:'https://www.cityheaven.net/tokyo/A1313/A131301/love-sele-k/?op=newc&pcmode=sp'},
+  {section:'各媒体', name:'シティヘブン新小岩', url:'https://www.cityheaven.net/tokyo/A1313/A131304/love-sele-s/?op=newc&pcmode=sp'},
+  {section:'各媒体', name:'デリヘルジャパン小岩', url:'https://deli-fuzoku.jp/lovesele01/'},
+  {section:'各媒体', name:'デリヘルジャパン新小岩', url:'https://deli-fuzoku.jp/loves2525/'},
+  {section:'各媒体', name:'デリヘルジャパン葛西', url:'https://deli-fuzoku.jp/lovesele/'},
+  {section:'各媒体', name:'風俗じゃぱん', url:'https://fuzoku.jp/loveselection/'},
+  {section:'各媒体', name:'駅チカ', url:'https://ranking-deli.jp/tokyo/area37/style2/794/'},
+  {section:'各媒体', name:'口コミ情報局', url:'https://fujoho.jp/index.php?p=shop&id=1302'},
+  {section:'各媒体', name:'ランキング・ピックアップ変更'},
+  {section:'HP', name:'ピックアップ', url:'https://love-sele.com/top'},
+  {section:'HP', name:'ピックアップムービー', url:'https://love-sele.com/top'},
+  {section:'HP', name:'ランキング並び替え', url:'https://love-sele.com/top'},
+  {section:'HP', name:'ニュース更新', url:'https://love-sele.com/top'},
+  {section:'その他', name:'写メ日記代行', diary:true}
+];
+
+function jpDate(){
+  const d = new Date();
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+const today = jpDate();
+const storageKey = `love-sele-update-${today}`;
+let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+function esc(s){return String(s??'').replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#039;'}[m]));}
+function save(){localStorage.setItem(storageKey, JSON.stringify(state)); updateProgress();}
+function updateProgress(){
+  const done = items.filter((_,i)=>state[i]?.done).length;
+  document.getElementById('countText').textContent = `${done} / ${items.length} 完了`;
+  document.getElementById('bar').style.width = `${Math.round(done/items.length*100)}%`;
+}
+function itemHtml(item,i){
+  const s=state[i]||{};
+  const opts=['<option value="">担当者を選択</option>',...staff.map(n=>`<option ${s.staff===n?'selected':''}>${n}</option>`)].join('');
+  return `<div class="item ${s.done?'done':''}" data-i="${i}">
+    <div><input class="check" type="checkbox" ${s.done?'checked':''} aria-label="完了"></div>
+    <div>
+      <div class="title">${esc(item.name)}</div>
+      ${item.url?`<a class="site" href="${item.url}" target="_blank" rel="noopener">サイトを開く ↗</a>`:''}
+      <div class="meta">
+        <select class="staff">${opts}</select>
+        ${item.diary?`<input class="diary" type="text" placeholder="書いた女性名を入力（複数可）" value="${esc(s.diary||'')}">`:`<input class="memo" type="text" placeholder="メモ（任意）" value="${esc(s.memo||'')}">`}
       </div>
-    </details>
+    </div>
+  </div>`;
+}
+function render(){
+  document.getElementById('dateText').textContent = new Date().toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+  const groups = [...new Set(items.map(x=>x.section))];
+  document.getElementById('app').innerHTML = groups.map(g=>`<section class="section"><h2>${g}</h2><div class="card">${items.map((x,i)=>x.section===g?itemHtml(x,i):'').join('')}</div></section>`).join('');
+  document.querySelectorAll('.item').forEach(el=>{
+    const i=+el.dataset.i;
+    el.querySelector('.check').addEventListener('change',e=>{state[i]={...(state[i]||{}),done:e.target.checked}; el.classList.toggle('done',e.target.checked); save();});
+    el.querySelector('.staff').addEventListener('change',e=>{state[i]={...(state[i]||{}),staff:e.target.value}; save();});
+    const memo=el.querySelector('.memo'); if(memo) memo.addEventListener('input',e=>{state[i]={...(state[i]||{}),memo:e.target.value}; save();});
+    const diary=el.querySelector('.diary'); if(diary) diary.addEventListener('input',e=>{state[i]={...(state[i]||{}),diary:e.target.value}; save();});
+  });
+  updateProgress();
+}
 
-    <details open>
-      <summary>HP作業</summary>
-      <div class="tasks">
-        <label class="task"><input type="checkbox" data-key="pickup"><span>ピックアップ — ピックアップ変更</span></label>
-        <label class="task"><input type="checkbox" data-key="pickup-movie"><span>ピックアップムービー — ピックアップムービー変更</span></label>
-        <label class="task"><input type="checkbox" data-key="reviews-sort"><span>口コミ — 口コミ並び替え変更</span></label>
-        <label class="task"><input type="checkbox" data-key="vanilla-review"><span>口コミ — バニラ女性目線口コミ（1日1回）</span></label>
-      </div>
-    </details>
-
-    <section class="panel">
-      <button class="reset" id="resetButton" type="button">今日のチェックをリセット</button>
-    </section>
-
-    <section class="panel">
-      <h2>各媒体リンク</h2>
-      <div class="links">
-        <a href="https://www.cityheaven.net/" target="_blank" rel="noopener">シティヘブン錦糸町</a>
-        <a href="https://www.cityheaven.net/" target="_blank" rel="noopener">シティヘブン新小岩</a>
-        <a href="https://deli-fuzoku.jp/" target="_blank" rel="noopener">デリヘルじゃぱん小岩【lovesele01】</a>
-        <a href="https://deli-fuzoku.jp/" target="_blank" rel="noopener">デリヘルじゃぱん新小岩【lovesele】</a>
-        <a href="https://deli-fuzoku.jp/" target="_blank" rel="noopener">デリヘルじゃぱん葛西【loves2525】</a>
-        <a href="https://fuzoku.jp/" target="_blank" rel="noopener">風俗じゃぱん</a>
-        <a href="https://ranking-deli.jp/" target="_blank" rel="noopener">駅ちか</a>
-        <a href="https://fujoho.jp/" target="_blank" rel="noopener">口コミ情報局</a>
-        <a href="https://qzin.jp/" target="_blank" rel="noopener">バニラ錦</a>
-        <a href="https://qzin.jp/" target="_blank" rel="noopener">バニラ西</a>
-        <a href="https://qzin.jp/" target="_blank" rel="noopener">バニラ新</a>
-        <a href="https://qzin.jp/" target="_blank" rel="noopener">バニラ葛</a>
-        <a href="https://qzin.jp/" target="_blank" rel="noopener">バニラ船</a>
-      </div>
-      <p class="note">※本日のチェック状態は端末ごとに保存されます</p>
-    </section>
-  </main>
-
-  <script>
-    const dateKey = new Date().toISOString().slice(0, 10);
-    const storageKey = `daily-checksheet-${dateKey}`;
-    const assigneeKey = `daily-checksheet-assignee-${dateKey}`;
-    const checkboxes = [...document.querySelectorAll('input[type="checkbox"][data-key]')];
-    const assignee = document.getElementById('assignee');
-
-    function loadState() {
-      const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
-      checkboxes.forEach(box => box.checked = Boolean(saved[box.dataset.key]));
-      assignee.value = localStorage.getItem(assigneeKey) || '';
-    }
-
-    function saveState() {
-      const state = {};
-      checkboxes.forEach(box => state[box.dataset.key] = box.checked);
-      localStorage.setItem(storageKey, JSON.stringify(state));
-    }
-
-    checkboxes.forEach(box => box.addEventListener('change', saveState));
-    assignee.addEventListener('change', () => {
-      localStorage.setItem(assigneeKey, assignee.value);
-    });
-
-    document.getElementById('resetButton').addEventListener('click', () => {
-      if (!confirm('本日のチェック状態をリセットしますか？')) return;
-      checkboxes.forEach(box => box.checked = false);
-      assignee.value = '';
-      localStorage.removeItem(storageKey);
-      localStorage.removeItem(assigneeKey);
-    });
-
-    loadState();
-  </script>
+document.getElementById('clearToday').addEventListener('click',()=>{if(confirm('今日のチェック・担当者・入力内容をリセットしますか？')){localStorage.removeItem(storageKey);state={};render();}});
+document.getElementById('clearAll').addEventListener('click',()=>{if(confirm('このサイトに保存した全データを削除しますか？')){Object.keys(localStorage).filter(k=>k.startsWith('love-sele-update-')).forEach(k=>localStorage.removeItem(k));state={};render();}});
+render();
+</script>
 </body>
 </html>
