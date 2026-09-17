@@ -15,7 +15,9 @@
 <div class="today" id="today"></div>
 <section class="panel assignee"><label for="assignee"><strong>担当者：</strong></label><select id="assignee"><option value="">（未選択）</option><option>角田</option><option>上野原</option><option>奥野</option><option>坪</option><option>西野</option><option>久具</option><option>松丸</option><option>亀谷</option><option>井上</option></select></section>
 <section class="panel progress-wrap"><div class="progress-text"><span>本日の進捗</span><span id="progressText">0 / 0</span></div><div class="bar"><div id="progressBar"></div></div></section>
-<details open><summary>基本作業</summary><div class="tasks"><label class="task"><input type="checkbox" data-key="attendance-contact"><span class="task-text">出勤連絡</span></label><label class="task"><input type="checkbox" data-key="benly-sort"><span class="task-text">ベンリー並び替え</span></label></div></details>
+<details open><summary>基本作業</summary><div class="tasks"><label class="task"><input type="checkbox" data-key="attendance-contact"><span class="task-text">出勤連絡</span></label><label class="task"><input type="checkbox" data-key="benly-sort"><span class="task-text">ベンリー並び替え</span></label>
+      <label class="task"><input type="checkbox" data-key="new-arrival-flash"><span class="task-text">新着速報</span></label>
+      <label class="task"><input type="checkbox" data-key="urgent-attendance-flash"><span class="task-text">緊急出勤速報</span></label></div></details>
 <details open><summary>各媒体</summary><div class="tasks">
 <label class="task"><input type="checkbox" data-key="cityheaven-kinshicho"><span class="task-text">シティヘブン錦糸町</span><a class="task-link" href="https://www.cityheaven.net/tokyo/A1313/A131301/love-sele-k/?op=newc&pcmode=sp" target="_blank" rel="noopener">開く</a></label>
 <label class="task"><input type="checkbox" data-key="cityheaven-shinkoiwa"><span class="task-text">シティヘブン新小岩</span><a class="task-link" href="https://www.cityheaven.net/tokyo/A1313/A131304/love-sele-s/?op=newc&pcmode=sp" target="_blank" rel="noopener">開く</a></label>
