@@ -19,7 +19,7 @@
 <section class="panel progress-wrap"><div class="progress-text"><span>本日の進捗</span><span id="progressText">0 / 0</span></div><div class="bar"><div id="progressBar"></div></div></section>
 <details open><summary>基本作業</summary><div class="tasks">
 <label class="task"><input type="checkbox" data-key="benly-sort"><span class="task-text">ベンリー並び替え</span></label>
-      <label class="task"><input type="checkbox" data-key="new-arrival-flash"><span class="task-text">面接情報新着速報</span></label>
+      <label class="task"><input type="checkbox" data-key="new-arrival-flash"><span class="task-text">営業LINE見直し<span style="color:#dc2626; font-weight:700;">※出勤漏れないか確認</span></span></label>
       <label class="task"><input type="checkbox" data-key="urgent-attendance-flash"><span class="task-text">緊急出勤速報</span></label></div></details>
 <details open><summary>各媒体</summary><div class="tasks">
 <label class="task"><input type="checkbox" data-key="cityheaven-kinshicho"><span class="task-text">シティヘブン錦糸町</span><a class="task-link" href="https://www.cityheaven.net/tokyo/A1313/A131301/love-sele-k/?op=newc&pcmode=sp" target="_blank" rel="noopener">開く</a></label>
