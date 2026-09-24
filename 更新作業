@@ -1,29 +1,3 @@
-修正しました。
-
-**「店舗メイン画像・ランキング」**を緊急出勤速報側から外して、各媒体 → 駅チカのところへ移動しました。
-
-最新版HTML v18 をダウンロード 
-
-love_selection_daily_check_complete_v18.html
-HTML
-HPピックアップ　消していいよ
-
-はい、「HPピックアップ」だけ削除しました。
-「ピックアップムービー」など他のHP作業はそのまま残しています。
-
-最新版HTML v19 をダウンロード 
-
-love_selection_daily_check_complete_v19.html
-HTML
-めっちゃ消えてるよ
-
-すみません、削除範囲が広くなっていました。
-v18から作り直して、「HPピックアップ」だけをピンポイントで削除しました。
-
-これまで追加した各媒体・管理画面ボタン・緊急出勤速報・営業LINE・写メ日記などは残っています。
-
-修正版HTML v20 をダウンロード 
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -78,5 +52,3 @@ checkboxes.forEach(box=>box.addEventListener('change',saveState));assignee.addEv
 </script>
 </body>
 </html>
-love_selection_daily_check_complete_v20.html
-HTML
