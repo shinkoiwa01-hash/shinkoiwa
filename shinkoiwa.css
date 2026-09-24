@@ -1,3 +1,29 @@
+修正しました。
+
+**「店舗メイン画像・ランキング」**を緊急出勤速報側から外して、各媒体 → 駅チカのところへ移動しました。
+
+最新版HTML v18 をダウンロード 
+
+love_selection_daily_check_complete_v18.html
+HTML
+HPピックアップ　消していいよ
+
+はい、「HPピックアップ」だけ削除しました。
+「ピックアップムービー」など他のHP作業はそのまま残しています。
+
+最新版HTML v19 をダウンロード 
+
+love_selection_daily_check_complete_v19.html
+HTML
+めっちゃ消えてるよ
+
+すみません、削除範囲が広くなっていました。
+v18から作り直して、「HPピックアップ」だけをピンポイントで削除しました。
+
+これまで追加した各媒体・管理画面ボタン・緊急出勤速報・営業LINE・写メ日記などは残っています。
+
+修正版HTML v20 をダウンロード 
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -20,19 +46,19 @@
 <details open><summary>基本作業</summary><div class="tasks">
 <label class="task"><input type="checkbox" data-key="benly-sort"><span class="task-text">ベンリー並び替え</span></label>
       <label class="task"><input type="checkbox" data-key="new-arrival-flash"><span class="task-text">営業LINE見直し<span style="color:#dc2626; font-weight:700;">※出勤漏れないか確認</span></span></label>
-      <label class="task"><input type="checkbox" data-key="urgent-attendance-flash"><span class="task-text">緊急出勤速報</span></label></div></details>
+      <label class="task"><input type="checkbox" data-key="urgent-attendance-flash"><span class="task-text">緊急出勤速報</span><span style="margin-left:auto; color:#2563eb; font-weight:700; font-size:13px;">ベンリー→簡単一括更新駅チカ</span></label></div></details>
 <details open><summary>各媒体</summary><div class="tasks">
-<label class="task"><input type="checkbox" data-key="cityheaven-kinshicho"><span class="task-text">シティヘブン錦糸町</span><a class="task-link" href="https://www.cityheaven.net/tokyo/A1313/A131301/love-sele-k/?op=newc&pcmode=sp" target="_blank" rel="noopener">開く</a></label>
-<label class="task"><input type="checkbox" data-key="cityheaven-shinkoiwa"><span class="task-text">シティヘブン新小岩</span><a class="task-link" href="https://www.cityheaven.net/tokyo/A1313/A131304/love-sele-s/?op=newc&pcmode=sp" target="_blank" rel="noopener">開く</a></label>
-<label class="task"><input type="checkbox" data-key="deli-koiwa"><span class="task-text">デリヘルジャパン小岩</span><a class="task-link" href="https://deli-fuzoku.jp/lovesele01/" target="_blank" rel="noopener">開く</a></label>
-<label class="task"><input type="checkbox" data-key="deli-shinkoiwa"><span class="task-text">デリヘルジャパン新小岩</span><a class="task-link" href="https://deli-fuzoku.jp/loves2525/" target="_blank" rel="noopener">開く</a></label>
-<label class="task"><input type="checkbox" data-key="deli-kasai"><span class="task-text">デリヘルジャパン葛西</span><a class="task-link" href="https://deli-fuzoku.jp/lovesele/" target="_blank" rel="noopener">開く</a></label>
-<label class="task"><input type="checkbox" data-key="fuzoku-japan"><span class="task-text">風俗じゃぱん</span><a class="task-link" href="https://fuzoku.jp/loveselection/" target="_blank" rel="noopener">開く</a></label>
-<label class="task"><input type="checkbox" data-key="ekichika"><span class="task-text">駅チカ</span><a class="task-link" href="https://ranking-deli.jp/tokyo/area37/style2/794/" target="_blank" rel="noopener">開く</a></label>
-<label class="task"><input type="checkbox" data-key="fujoho"><span class="task-text">口コミ情報局</span><a class="task-link" href="https://fujoho.jp/index.php?p=shop&id=1302" target="_blank" rel="noopener">開く</a></label>
+<label class="task"><input type="checkbox" data-key="cityheaven-kinshicho"><span class="task-text">シティヘブン錦糸町</span><a class="task-link" href="https://www.cityheaven.net/tokyo/A1313/A131301/love-sele-k/?op=newc&pcmode=sp" target="_blank" rel="noopener">開く</a> <a href="https://newmanager.cityheaven.net/C1Main.php" target="_blank" rel="noopener" class="link-btn">店長おススメ</a></label>
+<label class="task"><input type="checkbox" data-key="cityheaven-shinkoiwa"><span class="task-text">シティヘブン新小岩</span><a class="task-link" href="https://www.cityheaven.net/tokyo/A1313/A131304/love-sele-s/?op=newc&pcmode=sp" target="_blank" rel="noopener">開く</a> <a href="https://newmanager.cityheaven.net/C1Main.php" target="_blank" rel="noopener" class="link-btn">店長おススメ</a></label>
+<label class="task"><input type="checkbox" data-key="deli-koiwa"><span class="task-text">デリヘルジャパン小岩</span><a class="task-link" href="https://deli-fuzoku.jp/lovesele01/" target="_blank" rel="noopener">開く</a> <a href="https://deli-fuzoku.jp/entry/" target="_blank" rel="noopener" class="link-btn">ランキング・店長おススメ</a></label>
+<label class="task"><input type="checkbox" data-key="deli-shinkoiwa"><span class="task-text">デリヘルジャパン新小岩</span><a class="task-link" href="https://deli-fuzoku.jp/loves2525/" target="_blank" rel="noopener">開く</a> <a href="https://deli-fuzoku.jp/entry/" target="_blank" rel="noopener" class="link-btn">ランキング・店長おススメ</a></label>
+<label class="task"><input type="checkbox" data-key="deli-kasai"><span class="task-text">デリヘルジャパン葛西</span><a class="task-link" href="https://deli-fuzoku.jp/lovesele/" target="_blank" rel="noopener">開く</a> <a href="https://deli-fuzoku.jp/entry/" target="_blank" rel="noopener" class="link-btn">ランキング・店長おススメ</a></label>
+<label class="task"><input type="checkbox" data-key="fuzoku-japan"><span class="task-text">風俗じゃぱん</span><a class="task-link" href="https://fuzoku.jp/loveselection/" target="_blank" rel="noopener">開く</a> <a href="https://fuzoku.jp/entry/girls?lid=dAcC5_eRCugOwVwwawFzum5zOVducml4VG14ajRWMHZ2eE9VaGxzNWU0eFFUOEtqcFBieXlwazhiemM&sid=talQ49G9SxgqRT3Tf9NwA3lGUmlPaEhDcG54ZlFucTQ2TlV3QWVMSXpObDlHUWpwV3FLWEhWcmEyVEk&z=npf5QMY50ulY0be4U93qvU5NZTh1V2xTTjMzXy0wNHgxZUlLOUdibkZnWE4taEpnT2JBR3Q4eFhxS3M" target="_blank" rel="noopener" class="link-btn">ピックアップガール</a></label>
+<label class="task"><input type="checkbox" data-key="ekichika"><span class="task-text">駅チカ</span><a class="task-link" href="https://ranking-deli.jp/tokyo/area37/style2/794/" target="_blank" rel="noopener">開く</a> <a href="https://ranking-deli.jp/admin/" target="_blank" rel="noopener" class="link-btn">店舗メイン画像・ランキング</a></label>
+<label class="task"><input type="checkbox" data-key="fujoho"><span class="task-text">口コミ情報局</span><a class="task-link" href="https://fujoho.jp/index.php?p=shop&id=1302" target="_blank" rel="noopener">開く</a> <a href="https://fujoho.jp/index.php?sh=1302&p=shp_girl_list" target="_blank" rel="noopener" class="link-btn">店長イチオシ</a></label>
 </div></details>
 <details open><summary>HP作業</summary><div class="tasks">
-<label class="task"><input type="checkbox" data-key="hp-pickup"><span class="task-text">HP ピックアップ</span><a class="task-link" href="https://love-sele.com/top" target="_blank" rel="noopener">HP</a></label>
+
 <label class="task"><input type="checkbox" data-key="hp-pickup-movie"><span class="task-text">ピックアップムービー</span><a class="task-link" href="https://love-sele.com/top" target="_blank" rel="noopener">HP</a></label>
 <label class="task"><input type="checkbox" data-key="hp-ranking-sort"><span class="task-text">ランキング並び替え</span><a class="task-link" href="https://love-sele.com/ranking" target="_blank" rel="noopener">HP</a></label>
 <label class="task"><input type="checkbox" data-key="hp-news"><span class="task-text">HP ニュース更新</span><a class="task-link" href="https://love-sele.com/top" target="_blank" rel="noopener">HP</a></label>
@@ -52,3 +78,5 @@ checkboxes.forEach(box=>box.addEventListener('change',saveState));assignee.addEv
 </script>
 </body>
 </html>
+love_selection_daily_check_complete_v20.html
+HTML
